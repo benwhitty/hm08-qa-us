@@ -61,3 +61,4 @@ Great, your server is on!
 I am attaching screen shots of my work thus far. Having some difficulty but cannot seem to troubleshoot! 
 
 # Screenshots
+I added the screenshots under the issues tab in Github
