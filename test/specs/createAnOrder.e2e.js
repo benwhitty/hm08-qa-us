@@ -9,8 +9,9 @@ describe('Create an order', () => {
         fromField.setValue('East 2nd Street, 601');
         const toField = await $('#to')
         await toField.setValue('1300 1st St')
-        // add a pause to see that the input was filled
         await browser.pause(10000);
+        await expect(fromField).toBe('East 2nd Street, 601');
+        await expect(toField).toBe('1300 1st St');
     }) 
 
     it('should order a supportive taxi', async () => {
@@ -23,14 +24,13 @@ describe('Create an order', () => {
         await callATaxiButton.click()
         const Supportive = await $("//*[contains(text(), 'Supportive')]")
         await Supportive.click()
-        // add a pause to see that the input was filled
         await browser.pause(10000);
+        await expect(Supportive).toBeExisting();
     }) 
 
     it('should save the phone', async () => {
         await browser.url('/')
         await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
-        // Input phone number
         const phoneNumber = helper.getPhoneNumber("+1");
         await page.submitPhoneNumber(phoneNumber);
         await expect(await helper.getElementByText(phoneNumber)).toBeExisting();
@@ -39,7 +39,7 @@ describe('Create an order', () => {
     it('should add a credit card to the order', async () => {
     await browser.url('/')
     await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
-    // Adding a payment card
+
     const paymentMethodButton = await $(page.paymentMethodButton);
     await paymentMethodButton.waitForDisplayed();
     await paymentMethodButton.click();
@@ -77,7 +77,6 @@ describe('Create an order', () => {
     it('should write a message for the driver', async () => {
         await browser.url('/')
         await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
-        // Write a message for the driver
         const driverMessageInput = await $('//input[@name="comment"]');
         await driverMessageInput.setValue('Hello, driver!');
         const message = await driverMessageInput.getValue();
@@ -87,25 +86,23 @@ describe('Create an order', () => {
     it('should order a blanket and handkerchiefs with the taxi ', async () => {
         await browser.url('/')
         await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
-        // Ordering a blanket and handkerchiefs with the taxi
         const orderRequirementsButton = $('.reqs-arrow');
         await orderRequirementsButton.click();
         const blanketAndHandkerchiefsButton = $('.r-sw');
         await orderRequirementsButton.waitForClickable();
         await blanketAndHandkerchiefsButton.click();
+        await expect(blanketAndHandkerchiefsButton).toBeExisting();
     })
     
     it('should order 2 Ice Creams', async () => {
         await browser.url('/')
         await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
-        // Ordering 2 Ice Creams with the taxi
         const plusOneIceCreamButton = await $(page.plusOneIceCreamButton);
         await plusOneIceCreamButton.waitForDisplayed();
         await plusOneIceCreamButton.click();
         await plusOneIceCreamButton.click();
 
         await browser.pause(2000);
-        // Test Check
         const iceCreamValue = await plusOneIceCreamButton.getValue();
         await expect (iceCreamValue).toBe(2);
     })    
@@ -113,7 +110,6 @@ describe('Create an order', () => {
     it('should display driver info in the modal', async () => {
         await browser.url('/')
         await page.fillAddresses('East 2nd Street, 601', '1300 1st St');
-        // Waiting for driver info to appear in modal 
         const businessPlanButton = await $(page.businessPlanButton);
         await businessPlanButton.waitForDisplayed();
         await businessPlanButton.click();
@@ -122,5 +118,6 @@ describe('Create an order', () => {
         await orderButton.click();
         const orderModal = await $(page.carSearchModal);
         await orderModal.waitForDisplayed();
+        await expect(orderModal).toBeExisting();
     })    
 })

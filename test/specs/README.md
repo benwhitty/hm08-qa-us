@@ -25,6 +25,9 @@ Add a README.md file to the root directory of the project. The README should inc
 - Step 3: Open Urban Routes Server; URL 
 - Step 4: Test your scripts using terminal in VS Code
 
+# How to run the tests 
+- *The command for running tests is npm run wdio*
+
 # Instructions on how to configure resources used for testing
 
 - *Step 1: Connect your GitHub*
@@ -57,8 +60,7 @@ In config.js, replace the API URL with the unique link generated after the launc
 When you’re ready to start working, hit the “start server” button to get your server URL.
 Great, your server is on!
 
-# This is Project 8 Submission #2 (The first submission was an accident! The project was not complete!)
-I am attaching screen shots of my work thus far. Having some difficulty but cannot seem to troubleshoot! 
-
-# Screenshots
-I added the screenshots under the issues tab in Github
+# This is my corrected project 8 
+- Each test now has an expect() block with the expected result where possible.
+- I have deleted the commented lines of code. Since this code is not used, it has been removed. I have also removed any unnecessary lines of information. 
+- I have included the command for running tests with npm run wdio under the section "How to run the tests."
